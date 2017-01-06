@@ -1,0 +1,54 @@
+  <h1>{{title}}</h1>
+  <form name="playerForm" ng-submit="submitPlayer()" method="POST" novalidate>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input required ng-model="player.name" name="name" type="text" class="form-control" id="name">
+    <div class="has-error" ng-show="playerForm.name.$dirty && playerForm.name.$invalid">
+    <p class="help-block" ng-show="playerForm.name.$error.required">Name is required.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input name="age" ng-model="player.age" type="number" class="form-control" id="age" required>
+    <div class="has-error" ng-show="playerForm.age.$dirty && playerForm.age.$invalid">
+    <p class="help-block" ng-show="playerForm.age.$error.required">Age is required.</p>
+    <p class="help-block" ng-show="playerForm.age.$error.number">Age must be a valid number.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <select ng-model="player.gender" name="gender" class="form-control" id="gender" required>
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <div class="has-error" ng-show="playerForm.gender.$dirty && playerForm.gender.$invalid">
+    <p class="help-block" ng-show="playerForm.gender.$error.required">Gender is required.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="country">Country</label>
+    <input ng-maxlength="16" ng-model="player.country" name="country" type="text" class="form-control" id="country" required>
+    <div class="has-error" ng-show="playerForm.country.$dirty && playerForm.country.$invalid">
+    <p class="help-block" ng-show="playerForm.country.$error.required">Country is required.</p>
+    <p class="help-block" ng-show="playerForm.country.$error.maxlength">Country name should be within 16 characters</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="sports">Sports</label>
+    <input required ng-model="player.sports" name="sports" type="text" class="form-control" id="sports">
+    <div class="has-error" ng-show="playerForm.sports.$dirty && playerForm.sports.$invalid">
+    <p class="help-block" ng-show="playerForm.sports.$error.required">Sports is required.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="trophies">Medals/Trophies</label>
+    <input required ng-model="player.trophies" name="trophies" type="number" class="form-control" id="trophies">
+    <div class="has-error" ng-show="playerForm.trophies.$dirty && playerForm.trophies.$invalid">
+    <p class="help-block" ng-show="playerForm.trophies.$error.required">Medals/Trophies is required.</p>
+    <p class="help-block" ng-show="playerForm.trophies.$error.number">Medals/Trophies must be a valid number.</p>
+    </div>
+  </div>
+  <button ng-disabled="playerForm.$invalid" type="submit" class="btn btn-default btn-success">Submit</button>
+  <a href="/angular-sportstars" type="submit" class="btn btn-default btn-danger">Cancel</a>
+</form>

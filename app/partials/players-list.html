@@ -1,0 +1,97 @@
+<div class="col-md-12">
+  <form id="searchForm" class="form-inline">
+    <fieldset>
+      <legend>Search</legend>
+      <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" ng-model="player.name">
+        </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" class="form-control"  ng-model="player.country">
+        </div>
+        <div class="form-group">
+          <label for="sports">Sports</label>
+          <input type="text" class="form-control" ng-model="player.sports">
+        </div>
+        <button class="btn btn-default btn-danger" ng-click="resetSearch()">Reset</button>
+    </fieldset>
+    
+  </form>
+</div>
+<div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>
+              <a href ng-click="sortBy = 'name';sortReverse = !sortReverse">
+                Name
+                <span ng-show="sortBy == 'name' && !sortReverse" class="glyphicon glyphicon-menu-down"></span>
+                <span ng-show="sortBy == 'name' && sortReverse" class="glyphicon glyphicon-menu-down"></span>
+              </a>
+            </th>
+            <th>
+              <a href ng-click="sortBy = 'age';sortReverse = !sortReverse">
+                Age
+                <span ng-show="sortBy == 'age' && !sortReverse" class="glyphicon glyphicon-menu-down"></span>
+                <span ng-show="sortBy == 'age' && sortReverse" class="glyphicon glyphicon-menu-up"></span>
+              </a>
+            </th>
+            <th>
+              Gender
+            </th>
+            <th>
+              <a href ng-click="sortBy = 'country';sortReverse = !sortReverse">
+                Country
+                <span ng-show="sortBy == 'country' && !sortReverse" class="glyphicon glyphicon-menu-down"></span>
+                <span ng-show="sortBy == 'country' && sortReverse" class="glyphicon glyphicon-menu-up"></span>
+              </a>
+            </th>
+            <th>
+              <a href ng-click="sortBy = 'sports';sortReverse = !sortReverse">
+                Sports
+                <span ng-show="sortBy == 'sports' && !sortReverse" class="glyphicon glyphicon-menu-down"></span>
+                <span ng-show="sortBy == 'sports' && sortReverse" class="glyphicon glyphicon-menu-up"></span>
+              </a>
+            </th>
+            <th>
+              <a href ng-click="sortBy = 'trophies';sortReverse = !sortReverse">
+                Medal/Trophies
+                <span ng-show="sortBy == 'trophies' && !sortReverse" class="glyphicon glyphicon-menu-down"></span>
+                <span ng-show="sortBy == 'trophies' && sortReverse" class="glyphicon glyphicon-menu-up"></span>
+              </a>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="player in playerList | filter:player| orderBy:sortBy:sortReverse">
+            <td>
+              <a href="/angular-sportstars/#/player/view/{{player._id.$id}}">{{player.name}}</a>
+            </td>
+            <td>
+              {{player.age}}
+            </td>
+            <td>
+              {{player.gender}}
+            </td>
+            <td>
+              {{player.country}}
+            </td>
+            <td>
+              {{player.sports}}
+            </td>
+            <td>
+              {{player.trophies}}
+            </td>
+            <td>
+              <a href="/angular-sportstars/#/player/edit/{{player._id.$id}}">
+                <span class="glyphicon glyphicon-pencil"></span></a>
+              <a href ng-click="deletePlayer(player._id.$id)">
+                <span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a class="btn btn-success" href="/angular-sportstars/#/player/add">Add</a>
+</div>
